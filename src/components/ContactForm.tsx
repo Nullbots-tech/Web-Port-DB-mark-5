@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Check } from 'lucide-react';
+import { API_CONFIG } from '../config/api';
 
 interface InputFieldProps {
   label: string;
@@ -16,7 +17,6 @@ interface TextAreaFieldProps {
   value: string;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
-
 
 const ContactForm: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -43,7 +43,7 @@ const ContactForm: React.FC = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(`${API_CONFIG.API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
